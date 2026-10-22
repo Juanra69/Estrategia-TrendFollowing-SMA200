@@ -1,0 +1,31 @@
+name: Automatización Trend Following MM200
+
+on:
+  schedule:
+    # Lunes a viernes a las 22:30 UTC / Cierre de mercado americano
+    - cron: '30 22 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Instalar dependencias
+        run: |
+          pip install yfinance pandas
+
+      - name: Ejecutar script Trend Following
+        env:
+          EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
+        run: |
+          python estrategia_trend.py
