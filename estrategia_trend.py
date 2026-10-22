@@ -113,9 +113,4 @@ if alertas:
   enviar_correo(asunto, cuerpo)
 else:
   print('Sin cambios de estado/cruces en las bandas envolventes hoy.')
-    # LÍNEA TEMPORAL DE PRUEBA (borrar o comentar tras la prueba)
-enviar_correo(
-    '🧪 [PRUEBA] Verificación Estrategia Trend Following',
-    'Este correo confirma que el script de Trend Following (MM200 +'
-    ' Bandas) comunica correctamente con Gmail desde GitHub Actions.',
-)
+   
